@@ -4,7 +4,7 @@ plugins{
 }
 
 dependencies{
-
+    implementation(libs.postgresql)
 }
 
 java{

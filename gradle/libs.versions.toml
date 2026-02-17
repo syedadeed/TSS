@@ -1,7 +1,9 @@
 [versions]
 shadow = "9.3.0"
+postgres = "42.7.10"
 
 [libraries]
+postgresql = {module = "org.postgresql:postgresql", version.ref = "postgres"}
 
 [plugins]
 shadow = {id = "com.gradleup.shadow", version.ref = "shadow"}

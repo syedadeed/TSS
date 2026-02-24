@@ -10,6 +10,7 @@ postgres-driver = {module = "org.postgresql:postgresql", version.ref = "postgres
 jooq = {module = "org.jooq:jooq", version.ref = "jooq"}
 jooq-meta = {module = "org.jooq:jooq-meta", version.ref = "jooq"}
 jooq-codegen = {module = "org.jooq:jooq-codegen", version.ref = "jooq"}
+jooq-postgres-extensions = {module = "org.jooq:jooq-postgres-extensions", version.ref = "jooq"}
 jakarta-xml-bind = {module = "jakarta.xml.bind:jakarta.xml.bind-api", version.ref = "jakarta-xml-bind"}
 
 [plugins]

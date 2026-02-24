@@ -22,10 +22,12 @@ plugins{
 dependencies{
     implementation(libs.postgres.driver)
     implementation(libs.jooq)
+    implementation(libs.jooq.postgres.extensions)
 
     jooqCodegen(libs.postgres.driver)
     jooqCodegen(libs.jooq.meta)
     jooqCodegen(libs.jooq.codegen)
+    jooqCodegen(libs.jooq.postgres.extensions)
 
     compileOnly(libs.jakarta.xml.bind)
 }

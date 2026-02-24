@@ -4,7 +4,10 @@
 package com.tss.db;
 
 
-import com.tss.db.tables.Person;
+import com.tss.db.tables.Projects;
+import com.tss.db.tables.ScheduleAnalytics;
+import com.tss.db.tables.ScheduleEntries;
+import com.tss.db.tables.WeeklySchedules;
 
 
 /**
@@ -14,7 +17,22 @@ import com.tss.db.tables.Person;
 public class Tables {
 
     /**
-     * The table <code>public.person</code>.
+     * The table <code>public.projects</code>.
      */
-    public static final Person PERSON = Person.PERSON;
+    public static final Projects PROJECTS = Projects.PROJECTS;
+
+    /**
+     * The table <code>public.schedule_analytics</code>.
+     */
+    public static final ScheduleAnalytics SCHEDULE_ANALYTICS = ScheduleAnalytics.SCHEDULE_ANALYTICS;
+
+    /**
+     * The table <code>public.schedule_entries</code>.
+     */
+    public static final ScheduleEntries SCHEDULE_ENTRIES = ScheduleEntries.SCHEDULE_ENTRIES;
+
+    /**
+     * The table <code>public.weekly_schedules</code>.
+     */
+    public static final WeeklySchedules WEEKLY_SCHEDULES = WeeklySchedules.WEEKLY_SCHEDULES;
 }

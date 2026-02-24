@@ -4,7 +4,10 @@
 package com.tss.db;
 
 
-import com.tss.db.tables.Person;
+import com.tss.db.tables.Projects;
+import com.tss.db.tables.ScheduleAnalytics;
+import com.tss.db.tables.ScheduleEntries;
+import com.tss.db.tables.WeeklySchedules;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,9 +32,24 @@ public class Public extends SchemaImpl {
     public static final Public PUBLIC = new Public();
 
     /**
-     * The table <code>public.person</code>.
+     * The table <code>public.projects</code>.
      */
-    public final Person PERSON = Person.PERSON;
+    public final Projects PROJECTS = Projects.PROJECTS;
+
+    /**
+     * The table <code>public.schedule_analytics</code>.
+     */
+    public final ScheduleAnalytics SCHEDULE_ANALYTICS = ScheduleAnalytics.SCHEDULE_ANALYTICS;
+
+    /**
+     * The table <code>public.schedule_entries</code>.
+     */
+    public final ScheduleEntries SCHEDULE_ENTRIES = ScheduleEntries.SCHEDULE_ENTRIES;
+
+    /**
+     * The table <code>public.weekly_schedules</code>.
+     */
+    public final WeeklySchedules WEEKLY_SCHEDULES = WeeklySchedules.WEEKLY_SCHEDULES;
 
     /**
      * No further instances allowed
@@ -49,7 +67,10 @@ public class Public extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            Person.PERSON
+            Projects.PROJECTS,
+            ScheduleAnalytics.SCHEDULE_ANALYTICS,
+            ScheduleEntries.SCHEDULE_ENTRIES,
+            WeeklySchedules.WEEKLY_SCHEDULES
         );
     }
 }

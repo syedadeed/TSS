@@ -4,13 +4,21 @@
 package com.tss.db;
 
 
-import com.tss.db.tables.Person;
-import com.tss.db.tables.records.PersonRecord;
+import com.tss.db.tables.Projects;
+import com.tss.db.tables.ScheduleAnalytics;
+import com.tss.db.tables.ScheduleEntries;
+import com.tss.db.tables.WeeklySchedules;
+import com.tss.db.tables.records.ProjectsRecord;
+import com.tss.db.tables.records.ScheduleAnalyticsRecord;
+import com.tss.db.tables.records.ScheduleEntriesRecord;
+import com.tss.db.tables.records.WeeklySchedulesRecord;
 
+import org.jooq.ForeignKey;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
+import org.jooq.impl.QOM.ForeignKeyRule;
 
 
 /**
@@ -24,5 +32,22 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<PersonRecord> PERSON_PKEY = Internal.createUniqueKey(Person.PERSON, DSL.name("person_pkey"), new TableField[] { Person.PERSON.ID }, true);
+    public static final UniqueKey<ProjectsRecord> PROJECTS_PKEY = Internal.createUniqueKey(Projects.PROJECTS, DSL.name("projects_pkey"), new TableField[] { Projects.PROJECTS.ID }, true);
+    public static final UniqueKey<ProjectsRecord> PROJECTS_PROJECT_CODE_KEY = Internal.createUniqueKey(Projects.PROJECTS, DSL.name("projects_project_code_key"), new TableField[] { Projects.PROJECTS.PROJECT_CODE }, true);
+    public static final UniqueKey<ScheduleAnalyticsRecord> SCHEDULE_ANALYTICS_PKEY = Internal.createUniqueKey(ScheduleAnalytics.SCHEDULE_ANALYTICS, DSL.name("schedule_analytics_pkey"), new TableField[] { ScheduleAnalytics.SCHEDULE_ANALYTICS.ID }, true);
+    public static final UniqueKey<ScheduleAnalyticsRecord> SCHEDULE_ANALYTICS_WEEKLY_SCHEDULE_ID_KEY = Internal.createUniqueKey(ScheduleAnalytics.SCHEDULE_ANALYTICS, DSL.name("schedule_analytics_weekly_schedule_id_key"), new TableField[] { ScheduleAnalytics.SCHEDULE_ANALYTICS.WEEKLY_SCHEDULE_ID }, true);
+    public static final UniqueKey<ScheduleEntriesRecord> SCHEDULE_ENTRIES_PKEY = Internal.createUniqueKey(ScheduleEntries.SCHEDULE_ENTRIES, DSL.name("schedule_entries_pkey"), new TableField[] { ScheduleEntries.SCHEDULE_ENTRIES.ID }, true);
+    public static final UniqueKey<ScheduleEntriesRecord> UQ_PROJECT_ONCE = Internal.createUniqueKey(ScheduleEntries.SCHEDULE_ENTRIES, DSL.name("uq_project_once"), new TableField[] { ScheduleEntries.SCHEDULE_ENTRIES.PROJECT_ID }, true);
+    public static final UniqueKey<ScheduleEntriesRecord> UQ_SCHEDULE_DATE = Internal.createUniqueKey(ScheduleEntries.SCHEDULE_ENTRIES, DSL.name("uq_schedule_date"), new TableField[] { ScheduleEntries.SCHEDULE_ENTRIES.WEEKLY_SCHEDULE_ID, ScheduleEntries.SCHEDULE_ENTRIES.SCHEDULED_DATE }, true);
+    public static final UniqueKey<ScheduleEntriesRecord> UQ_SCHEDULE_SLOT = Internal.createUniqueKey(ScheduleEntries.SCHEDULE_ENTRIES, DSL.name("uq_schedule_slot"), new TableField[] { ScheduleEntries.SCHEDULE_ENTRIES.WEEKLY_SCHEDULE_ID, ScheduleEntries.SCHEDULE_ENTRIES.DAY_SLOT }, true);
+    public static final UniqueKey<WeeklySchedulesRecord> WEEKLY_SCHEDULES_PKEY = Internal.createUniqueKey(WeeklySchedules.WEEKLY_SCHEDULES, DSL.name("weekly_schedules_pkey"), new TableField[] { WeeklySchedules.WEEKLY_SCHEDULES.ID }, true);
+    public static final UniqueKey<WeeklySchedulesRecord> WEEKLY_SCHEDULES_WEEK_START_DATE_KEY = Internal.createUniqueKey(WeeklySchedules.WEEKLY_SCHEDULES, DSL.name("weekly_schedules_week_start_date_key"), new TableField[] { WeeklySchedules.WEEKLY_SCHEDULES.WEEK_START_DATE }, true);
+
+    // -------------------------------------------------------------------------
+    // FOREIGN KEY definitions
+    // -------------------------------------------------------------------------
+
+    public static final ForeignKey<ScheduleAnalyticsRecord, WeeklySchedulesRecord> SCHEDULE_ANALYTICS__SCHEDULE_ANALYTICS_WEEKLY_SCHEDULE_ID_FKEY = Internal.createForeignKey(ScheduleAnalytics.SCHEDULE_ANALYTICS, DSL.name("schedule_analytics_weekly_schedule_id_fkey"), new TableField[] { ScheduleAnalytics.SCHEDULE_ANALYTICS.WEEKLY_SCHEDULE_ID }, Keys.WEEKLY_SCHEDULES_PKEY, new TableField[] { WeeklySchedules.WEEKLY_SCHEDULES.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
+    public static final ForeignKey<ScheduleEntriesRecord, ProjectsRecord> SCHEDULE_ENTRIES__SCHEDULE_ENTRIES_PROJECT_ID_FKEY = Internal.createForeignKey(ScheduleEntries.SCHEDULE_ENTRIES, DSL.name("schedule_entries_project_id_fkey"), new TableField[] { ScheduleEntries.SCHEDULE_ENTRIES.PROJECT_ID }, Keys.PROJECTS_PKEY, new TableField[] { Projects.PROJECTS.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
+    public static final ForeignKey<ScheduleEntriesRecord, WeeklySchedulesRecord> SCHEDULE_ENTRIES__SCHEDULE_ENTRIES_WEEKLY_SCHEDULE_ID_FKEY = Internal.createForeignKey(ScheduleEntries.SCHEDULE_ENTRIES, DSL.name("schedule_entries_weekly_schedule_id_fkey"), new TableField[] { ScheduleEntries.SCHEDULE_ENTRIES.WEEKLY_SCHEDULE_ID }, Keys.WEEKLY_SCHEDULES_PKEY, new TableField[] { WeeklySchedules.WEEKLY_SCHEDULES.ID }, true, ForeignKeyRule.CASCADE, ForeignKeyRule.NO_ACTION);
 }

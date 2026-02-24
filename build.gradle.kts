@@ -1,3 +1,18 @@
+buildscript{
+    repositories{
+        mavenCentral()
+    }
+    dependencies{
+        //KEEP THESE IN SYNC WITH VERSION IN libs.versions.toml FILE
+        val flyway = "12.0.2"
+        val postgres_driver = "42.7.10"
+
+        classpath("org.flywaydb:flyway-core:$flyway")
+        classpath("org.flywaydb:flyway-database-postgresql:$flyway")
+        classpath("org.postgresql:postgresql:$postgres_driver")
+    }
+}
+
 plugins{
     java
     alias(libs.plugins.shadow)
@@ -44,6 +59,24 @@ sourceSets{
             srcDir("src/main/generated")
         }
     }
+}
+
+tasks.register("flywayMigrate"){
+    doLast{
+        org.flywaydb.core.Flyway.configure()
+            .dataSource(
+                System.getenv("DB_URL") ?: "jdbc:postgresql://localhost:5432/devdb",
+                System.getenv("DB_USER") ?: "dev",
+                System.getenv("DB_PASSWORD") ?: "devpass"
+            )
+            .locations("filesystem:src/main/resources/db/migration")
+            .load()
+            .migrate()
+    }
+}
+
+tasks.named("jooqCodegen"){
+    dependsOn("flywayMigrate")
 }
 
 tasks.named("compileJava"){

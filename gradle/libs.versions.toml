@@ -3,6 +3,7 @@ shadow = "9.3.0"
 postgres-driver = "42.7.10"
 jooq = "3.20.11"
 jakarta-xml-bind = "4.0.1"
+flyway = "12.0.2"
 
 [libraries]
 postgres-driver = {module = "org.postgresql:postgresql", version.ref = "postgres-driver"}

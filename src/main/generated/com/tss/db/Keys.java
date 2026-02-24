@@ -4,10 +4,12 @@
 package com.tss.db;
 
 
+import com.tss.db.tables.FlywaySchemaHistory;
 import com.tss.db.tables.Projects;
 import com.tss.db.tables.ScheduleAnalytics;
 import com.tss.db.tables.ScheduleEntries;
 import com.tss.db.tables.WeeklySchedules;
+import com.tss.db.tables.records.FlywaySchemaHistoryRecord;
 import com.tss.db.tables.records.ProjectsRecord;
 import com.tss.db.tables.records.ScheduleAnalyticsRecord;
 import com.tss.db.tables.records.ScheduleEntriesRecord;
@@ -32,6 +34,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<FlywaySchemaHistoryRecord> FLYWAY_SCHEMA_HISTORY_PK = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, DSL.name("flyway_schema_history_pk"), new TableField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK }, true);
     public static final UniqueKey<ProjectsRecord> PROJECTS_PKEY = Internal.createUniqueKey(Projects.PROJECTS, DSL.name("projects_pkey"), new TableField[] { Projects.PROJECTS.ID }, true);
     public static final UniqueKey<ProjectsRecord> PROJECTS_PROJECT_CODE_KEY = Internal.createUniqueKey(Projects.PROJECTS, DSL.name("projects_project_code_key"), new TableField[] { Projects.PROJECTS.PROJECT_CODE }, true);
     public static final UniqueKey<ScheduleAnalyticsRecord> SCHEDULE_ANALYTICS_PKEY = Internal.createUniqueKey(ScheduleAnalytics.SCHEDULE_ANALYTICS, DSL.name("schedule_analytics_pkey"), new TableField[] { ScheduleAnalytics.SCHEDULE_ANALYTICS.ID }, true);

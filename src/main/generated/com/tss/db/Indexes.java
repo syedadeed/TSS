@@ -4,6 +4,7 @@
 package com.tss.db;
 
 
+import com.tss.db.tables.FlywaySchemaHistory;
 import com.tss.db.tables.Projects;
 import com.tss.db.tables.ScheduleEntries;
 import com.tss.db.tables.WeeklySchedules;
@@ -24,6 +25,7 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index FLYWAY_SCHEMA_HISTORY_S_IDX = Internal.createIndex(DSL.name("flyway_schema_history_s_idx"), FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, new OrderField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.SUCCESS }, false);
     public static final Index IDX_PROJECTS_DEADLINE_DAYS = Internal.createIndex(DSL.name("idx_projects_deadline_days"), Projects.PROJECTS, new OrderField[] { Projects.PROJECTS.DEADLINE_DAYS }, false);
     public static final Index IDX_PROJECTS_RECEIVED_ON = Internal.createIndex(DSL.name("idx_projects_received_on"), Projects.PROJECTS, new OrderField[] { Projects.PROJECTS.RECEIVED_ON }, false);
     public static final Index IDX_PROJECTS_STATUS = Internal.createIndex(DSL.name("idx_projects_status"), Projects.PROJECTS, new OrderField[] { Projects.PROJECTS.STATUS }, false);

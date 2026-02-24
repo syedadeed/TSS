@@ -4,6 +4,7 @@
 package com.tss.db;
 
 
+import com.tss.db.tables.FlywaySchemaHistory;
 import com.tss.db.tables.Projects;
 import com.tss.db.tables.ScheduleAnalytics;
 import com.tss.db.tables.ScheduleEntries;
@@ -15,6 +16,11 @@ import com.tss.db.tables.WeeklySchedules;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
+
+    /**
+     * The table <code>public.flyway_schema_history</code>.
+     */
+    public static final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
 
     /**
      * The table <code>public.projects</code>.

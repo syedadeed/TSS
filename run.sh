@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# ./gradlew test
 ./gradlew shadowJar
 java -jar build/libs/tss-all.jar
 

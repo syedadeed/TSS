@@ -11,6 +11,8 @@ dependencies{
     jooqCodegen(libs.postgres.driver)
     jooqCodegen(libs.jooq.meta)
     jooqCodegen(libs.jooq.codegen)
+
+    compileOnly(libs.jakarta.xml.bind)
 }
 
 jooq{

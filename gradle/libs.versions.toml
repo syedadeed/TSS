@@ -2,12 +2,14 @@
 shadow = "9.3.0"
 postgres-driver = "42.7.10"
 jooq = "3.20.11"
+jakarta-xml-bind = "4.0.1"
 
 [libraries]
 postgres-driver = {module = "org.postgresql:postgresql", version.ref = "postgres-driver"}
 jooq = {module = "org.jooq:jooq", version.ref = "jooq"}
 jooq-meta = {module = "org.jooq:jooq-meta", version.ref = "jooq"}
 jooq-codegen = {module = "org.jooq:jooq-codegen", version.ref = "jooq"}
+jakarta-xml-bind = {module = "jakarta.xml.bind:jakarta.xml.bind-api", version.ref = "jakarta-xml-bind"}
 
 [plugins]
 shadow = {id = "com.gradleup.shadow", version.ref = "shadow"}
